@@ -1,0 +1,20 @@
+$--color-primary: #E6B27C;
+$--color-success: #67C23A;
+$--color-warning: #F9A519;
+$--color-info: #409EFF;
+
+$--color-text-primary: #333743;
+$--color-text-regular: #333743;
+$--color-text-secondary: #A0A5AC;
+
+$--color-text-placeholder: #A0A5AC;
+
+
+
+
+$--input-border-radius: 0;
+$--border-radius-base: 2px;
+
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
