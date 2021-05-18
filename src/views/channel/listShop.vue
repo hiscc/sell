@@ -24,13 +24,22 @@
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">累计违规次数</section>
+        <section class="label-title">最小违规次数</section>
         <el-input v-model="params.a2" size="small" placeholder="请输入" style="width: 160px;" clearable />
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">去重累计违规链接数</section>
+        <section class="label-title">最大违规次数</section>
+        <el-input v-model="params.a21" size="small" placeholder="请输入" style="width: 160px;" clearable />
+      </el-form-item>
+
+      <el-form-item prop="settlementOrderState">
+        <section class="label-title">最小违规链接数</section>
         <el-input v-model="params.a4" size="small" placeholder="请输入" style="width: 160px;" clearable />
+      </el-form-item>
+      <el-form-item prop="settlementOrderState">
+        <section class="label-title">最大违规链接数</section>
+        <el-input v-model="params.a41" size="small" placeholder="请输入" style="width: 160px;" clearable />
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">

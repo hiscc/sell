@@ -9,7 +9,7 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              最新监控店铺
+              最新监控店铺量
             </div>
             <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
           </div>
@@ -23,7 +23,7 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              链接量
+              最新监控链接量
             </div>
             <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
           </div>
@@ -37,7 +37,7 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              预计挽回损失金额
+              违规店铺量
             </div>
             <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
           </div>
@@ -51,7 +51,7 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              违规店铺数
+              预计挽回金额（万元）
             </div>
             <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
           </div>
@@ -92,7 +92,7 @@ export default {
     return {
       option1: {
         title: {
-          text: '淘宝违规店铺销量TOP10',
+          text: '违规店铺销售TOP10（淘宝）',
           left: 'center',
           padding: [20, 10]
         },
@@ -124,7 +124,7 @@ export default {
       },
       option3: {
         title: {
-          text: '淘宝区域违规店铺数量TOP10',
+          text: '违规店铺区域分布TOP10（淘宝）',
           left: 'center',
           padding: [20, 10]
         },
@@ -172,6 +172,9 @@ export default {
           left: '20',
           bottom: '20',
           data: ['微信', '微博', '百度推广', '新浪扶翼', '头条', '抖音', '快手', '360推广', '谷歌', '应用市场']
+        },
+        label: {
+          formatter: '{b}: {d}%',
         },
         series: [
           {

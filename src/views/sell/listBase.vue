@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section class="container-title">
-      <span>分销数据基础版</span>
+      <span>授权店铺违规情况</span>
     </section>
 
     <el-form ref="form" :inline="true" :model="params" label-width="80px" class="form-option">
@@ -19,30 +19,32 @@
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">品牌</section>
+        <section class="label-title">店铺名称/旺旺ID</section>
+        <el-input v-model="params.a1" size="small" placeholder="请输入" style="width: 160px;" clearable />
+      </el-form-item>
+
+      <el-form-item prop="settlementOrderState">
+        <section class="label-title">最小违规次数</section>
         <el-input v-model="params.a2" size="small" placeholder="请输入" style="width: 160px;" clearable />
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">链接</section>
+        <section class="label-title">最大违规次数</section>
+        <el-input v-model="params.a21" size="small" placeholder="请输入" style="width: 160px;" clearable />
+      </el-form-item>
+
+      <el-form-item prop="settlementOrderState">
+        <section class="label-title">最小违规链接数</section>
         <el-input v-model="params.a4" size="small" placeholder="请输入" style="width: 160px;" clearable />
       </el-form-item>
-
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">店铺名称/旺旺ID</section>
-        <el-input v-model="params.a5" size="small" placeholder="请输入" style="width: 160px;" clearable />
+        <section class="label-title">最大违规链接数</section>
+        <el-input v-model="params.a41" size="small" placeholder="请输入" style="width: 160px;" clearable />
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">处理结果</section>
-        <el-select v-model="params.a1" size="small" clearable style="width: 160px;">
-          <el-option
-            v-for="item in settlementOrderStateList1"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
+        <section class="label-title">重点关注SKU</section>
+        <el-input v-model="params.a5" size="small" placeholder="请输入" style="width: 160px;" clearable />
       </el-form-item>
 
       <el-form-item>
@@ -67,16 +69,16 @@
     >
 
       <el-table-column label="平台" prop="a1" />
-      <el-table-column label="品牌" prop="a2" />
-      <el-table-column label="链接" prop="a3" />
-      <el-table-column label="店铺名称/旺旺ID" prop="a4" />
-      <el-table-column label="处理结果" prop="a5" />
+      <el-table-column label="店铺名称/旺旺ID" prop="a2" />
+      <el-table-column label="累计违规次数" prop="a3" />
+      <el-table-column label="去重累计违规链接数" prop="a4" />
+      <el-table-column label="重点关注SKU" prop="a5" />
 
     </el-table>
 
     <div class="fixFooter">
       <section class="footer-left">
-        <el-button size="small" :disabled="list.length == 0" icon="el-icon-download" @click="handleExport">导出当前月数据</el-button>
+        <!-- <el-button  size="small" :disabled="list.length == 0" icon="el-icon-download" @click="handleExport">导出当前月数据</el-button> -->
       </section>
 
       <Pagination :total="total" :page.sync="curPage" :size.sync="pageSize" @pagination="loadData" />
@@ -104,20 +106,21 @@ export default {
   data() {
     return {
       filterAll: false,
-
       settlementOrderStateList1: [
-        { label: '已下架', value: 0 },
-        { label: '已整改', value: -1 },
-        { label: '已删除', value: 1 },
-        { label: '已收编', value: 2 },
-        { label: '已撤诉', value: 3 },
-        { label: '意愿合作', value: 4 }
+        { label: 'A0', value: 0 },
+        { label: 'A1', value: -1 },
+        { label: 'A2', value: 1 }
+      ],
+      settlementOrderStateList2: [
+        { label: 'Apple', value: 0 },
+        { label: 'Android', value: -1 },
+        { label: 'Mi', value: 1 }
       ],
       settlementOrderStateList3: [
         { label: '淘宝', value: 0 },
         { label: '拼多多', value: -1 },
         { label: '京东', value: 1 },
-        { label: '苏宁', value: 2 }
+        { label: '苏宁', value: 1 }
       ],
 
       params: {
@@ -128,8 +131,7 @@ export default {
         partybName: '',
         settlementOrderId: '',
         settlementOrderState: '',
-        operatorName: '',
-        type: 1
+        operatorName: ''
       },
       payType: '',
       invoiceState: '',
@@ -138,10 +140,10 @@ export default {
       curPage: 1,
       total: 4,
       list: [
-        { a1: '淘宝', a4: '小丸子112', a3: 'www.dede.com', a2: '雀巢', a5: '已整改' },
-        { a1: '拼多多', a4: '贸易名家', a3: 'www.dede.com', a2: '雀巢', a5: '已删除' },
-        { a1: '京东', a4: '荒年记', a3: 'www.dede.com', a2: '雀巢', a5: '意愿合作' },
-        { a1: '苏宁', a4: '小兵嘎嘎', a3: 'www.dede.com', a2: '雀巢', a5: '意愿合作' }
+        { a1: '淘宝', a2: '小丸子112', a3: '16', a4: '144', a5: 'A01.A01' },
+        { a1: '拼多多', a2: '贸易名家', a3: '89', a4: '24', a5: 'A01.A02' },
+        { a1: '京东', a2: '荒年记', a3: '19', a4: '344', a5: 'A01.A03' },
+        { a1: '苏宁', a2: '小兵嘎嘎', a3: '29', a4: '14', a5: 'A01.A04' }
       ]
 
     }
@@ -157,19 +159,56 @@ export default {
   },
   methods: {
     loadData(query) {
+      // if(query == 'reset'){
+      //   this.curPage = 1
+      // }
+      // const { pageSize, curPage, params, invoiceState, payType } = this
+      // if(params.createTimeBegin && params.createTimeBegin.length === 10){
+      //   params.createTimeBegin += " 00:00:00"
+      // }
+      // if(params.createTimeEnd && params.createTimeEnd.length === 10){
+      //   params.createTimeEnd += " 23:59:59"
+      // }
+      // const payTypeMap = {
+      //   "0": [0],
+      //   "1": [1,2,3]
+      // }
+      // params.payTypeList = payTypeMap[payType] || ""
 
-    },
-    handleExport() {
-      // const { pageSize, curPage, params } = this
+      // const invoiceStateMap = {
+      //   "0": [-4, -3, -2, -1, 0, 3, 4, 5, 6],
+      //   "1": [7,8]
+      // }
+      // params.invoiceStateList = invoiceStateMap[invoiceState] || ""
+
       // const data = {
       //   pageSize,
       //   curPage,
       //   data: this.filterParams(params),
       // }
+      // // console.log(data.data)
+      // // return
 
-      // post({url: Api.orderExport, data}).then(r => {
-      //   this.handleRes(r)
+      // post({url: Api.orderList, data}).then(r => {
+      //   console.log(r)
+      //   const { list, total, pageSize, curPage, msg } = r
+      //   this.total = ~~total
+      //   this.pageSize = ~~pageSize
+      //   this.curPage = ~~curPage
+      //   this.list = list
       // })
+    },
+    handleExport() {
+      const { pageSize, curPage, params } = this
+      const data = {
+        pageSize,
+        curPage,
+        data: this.filterParams(params)
+      }
+
+      post({ url: Api.orderExport, data }).then(r => {
+        this.handleRes(r)
+      })
     },
 
     // opt
@@ -211,10 +250,6 @@ export default {
 
 .container{
   background: white;
-}
-
-.chart1{
-  height: 500px;
 }
 
 </style>

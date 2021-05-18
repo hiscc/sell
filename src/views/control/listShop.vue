@@ -2,10 +2,6 @@
   <div class="container">
     <section class="container-title">
       <span>管控数据分析</span>
-      <el-radio-group v-model="params.type" size="small" style="margin-left: 15px">
-        <el-radio-button :label="0">列表</el-radio-button>
-        <el-radio-button :label="1">图表</el-radio-button>
-      </el-radio-group>
     </section>
 
     <el-form ref="form" :inline="true" :model="params" label-width="80px" class="form-option">
@@ -48,12 +44,8 @@
 
     </el-form>
 
-    <div v-if="params.type == 1" class="chart-wrapper">
-      <v-chart class="chart1" :option="option1" />
-    </div>
 
     <el-table
-      v-if="params.type == 0"
       ref="multipleTable"
       :data="list"
       border
@@ -128,7 +120,6 @@ export default {
         settlementOrderId: '',
         settlementOrderState: '',
         operatorName: '',
-        type: 0
       },
       payType: '',
       invoiceState: '',
