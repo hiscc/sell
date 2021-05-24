@@ -70,11 +70,11 @@
       <el-table-column label="型号" prop="a1" />
       <el-table-column label="品牌" prop="a2" />
       <el-table-column label="平台" prop="a3" />
-      <el-table-column label="违规链接量" prop="a4" />
-      <el-table-column label="总销售额（万元）" prop="a5" />
+      <el-table-column label="违规链接量" prop="a4" sortable />
+      <el-table-column label="总销售额（万元）" prop="a5" sortable />
       <el-table-column label="限价" prop="a6" />
       <el-table-column label="均价" prop="a7" />
-      <el-table-column label="月均折扣率" prop="a8" />
+      <el-table-column label="月均折扣率" prop="a8" sortable />
 
     </el-table>
 

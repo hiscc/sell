@@ -4,7 +4,7 @@
       <span>管控数据图表</span>
     </section>
 
-    <el-form ref="form" :inline="true" :model="params" label-width="80px" class="form-option">
+    <!-- <el-form ref="form" :inline="true" :model="params" label-width="80px" class="form-option">
 
       <el-form-item prop="settlementOrderState">
         <section class="label-title">平台</section>
@@ -42,7 +42,7 @@
         <el-button size="small" @click="resetForm">清空</el-button>
       </el-form-item>
 
-    </el-form>
+    </el-form> -->
 
     <div class="chart-wrapper">
       <v-chart class="chart1" :option="option1" />
@@ -54,7 +54,7 @@
         <el-button size="small" :disabled="list.length == 0" icon="el-icon-download" @click="handleExport">导出当前月数据</el-button>
       </section>
 
-      <Pagination :total="total" :page.sync="curPage" :size.sync="pageSize" @pagination="loadData" />
+      <!-- <Pagination :total="total" :page.sync="curPage" :size.sync="pageSize" @pagination="loadData" /> -->
     </div>
 
   </div>

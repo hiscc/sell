@@ -49,7 +49,7 @@
           <div class="card-panel-icon-wrapper icon-shopping">
             <svg-icon icon-class="s4" class-name="card-panel-icon" />
           </div>
-          <div class="card-panel-description">
+          <div class="card-panel-description fixed">
             <div class="card-panel-text">
               预计挽回金额（万元）
             </div>
@@ -63,18 +63,18 @@
       <el-col :xs="24" :sm="24" :lg="12" :gutter="20">
         <el-row>
           <div class="chart-wrapper">
-            <v-chart class="chart1" :option="option1" />
+            <v-chart class="chart1" :option="option1" ref="chart1"/>
           </div>
         </el-row>
         <el-row>
           <div class="chart-wrapper">
-            <v-chart class="chart2" :option="option3" />
+            <v-chart class="chart2" :option="option3" ref="chart3"/>
           </div>
         </el-row>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="12">
         <div class="chart-wrapper">
-          <v-chart class="chart3" :option="option2" />
+          <v-chart class="chart3" :option="option2" ref="chart2"/>
         </div>
       </el-col>
     </el-row>
@@ -102,7 +102,7 @@ export default {
         // },
         grid: {
           left: '3%',
-          right: '4%',
+          right: '12%',
           bottom: '3%',
           containLabel: true
         },
@@ -134,7 +134,7 @@ export default {
         // },
         grid: {
           left: '3%',
-          right: '4%',
+          right: '12%',
           bottom: '3%',
           containLabel: true
         },
@@ -169,12 +169,19 @@ export default {
         },
         legend: {
           type: 'scroll',
-          left: '20',
+          // left: '10',
+          right: '12%',
           bottom: '20',
           data: ['微信', '微博', '百度推广', '新浪扶翼', '头条', '抖音', '快手', '360推广', '谷歌', '应用市场']
         },
         label: {
           formatter: '{b}: {d}%',
+        },
+        grid: {
+          left: '3%',
+          right: '12%',
+          bottom: '3%',
+          containLabel: true
         },
         series: [
           {
@@ -199,6 +206,32 @@ export default {
         ]
       }
     }
+  },
+  mounted(){
+    const that = this
+    function done(fn, delay_time){
+        var start_time = null;
+        return function(){
+            var curr_time = +new Date();
+            !start_time && (start_time = curr_time);
+            if (curr_time- start_time >= delay_time){
+                fn.apply(this, arguments);
+                start_time = curr_time;
+            }
+        }
+    }
+    window.onresize = done(function(){
+　　　 that.$refs.chart1.resize();
+      that.$refs.chart2.resize();
+      that.$refs.chart3.resize();
+    },500)
+    // window.addEventListener("resize", function() {
+      
+    // }, { once: false});
+  },
+  unmounted(){
+    //  window.removeEventListener("resize", function(){
+    //  })
   },
   methods: {
     handleSetLineChartData(type) {
@@ -292,6 +325,14 @@ export default {
         font-size: 20px;
       }
     }
+    @media (min-width: 1200px) {
+      .fixed{
+        position: absolute;
+        right: 10px;
+        margin: 26px 0;
+      }
+    }
+    
   }
 }
 

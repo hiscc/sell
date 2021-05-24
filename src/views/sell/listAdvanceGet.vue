@@ -70,7 +70,7 @@
       <el-table-column label="区域" prop="a6" />
       <el-table-column label="负责人" prop="a7" />
       <el-table-column label="联系方式" prop="a71" />
-      <el-table-column label="搜索条件" prop="a8" />
+      <!-- <el-table-column label="搜索条件" prop="a8" /> -->
 
       <el-table-column label="收编时间" prop="a9" />
 
