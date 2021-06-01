@@ -48,7 +48,6 @@
       <v-chart class="chart1" :option="option1" />
     </div>
 
-
     <div class="fixFooter">
       <section class="footer-left">
         <el-button size="small" :disabled="list.length == 0" icon="el-icon-download" @click="handleExport">导出当前月数据</el-button>
@@ -150,12 +149,13 @@ export default {
           {
             name: '处理量',
             type: 'bar',
-            data: [20, 120, 136, 10, 130, 210, 20, 120, 136, 10, 130, 210]
+            data: [30, 32, 26, 19, 89, 22, 23, 24, 25, 26, 27, 31]
           },
           {
             name: '处理成功量',
             type: 'bar',
-            data: [20, 20, 36, 10, 10, 20, 20, 20, 36, 10, 10, 20]
+            data: [22, 16, 14, 8, 43, 14, 15, 16, 22, 18, 19, 19
+            ]
           }
         ]
       }

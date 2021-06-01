@@ -44,7 +44,6 @@
 
     </el-form>
 
-
     <el-table
       ref="multipleTable"
       :data="list"
@@ -57,10 +56,14 @@
       size="mini"
     >
 
-      <el-table-column label="平台" prop="a1" />
-      <el-table-column label="品牌" prop="a2" />
-      <el-table-column label="链接" prop="a3" />
-      <el-table-column label="店铺名称/旺旺ID" prop="a4" />
+      <el-table-column label="平台" prop="a2" />
+      <el-table-column label="品牌" prop="a1" />
+      <el-table-column label="链接" prop="a4">
+        <template slot-scope="scope">
+          <a :href="scope.row.a4" target="_blank">{{ scope.row.a4 }}</a>
+        </template>
+      </el-table-column>
+      <el-table-column label="店铺名称/旺旺ID" prop="a3" />
       <el-table-column label="处理结果" prop="a5" />
 
     </el-table>
@@ -119,19 +122,29 @@ export default {
         partybName: '',
         settlementOrderId: '',
         settlementOrderState: '',
-        operatorName: '',
+        operatorName: ''
       },
       payType: '',
       invoiceState: '',
 
       pageSize: 50,
       curPage: 1,
-      total: 4,
+      total: 14,
       list: [
-        { a1: '淘宝', a4: '小丸子112', a3: 'www.dede.com', a2: '雀巢', a5: '已整改' },
-        { a1: '拼多多', a4: '贸易名家', a3: 'www.dede.com', a2: '雀巢', a5: '已删除' },
-        { a1: '京东', a4: '荒年记', a3: 'www.dede.com', a2: '雀巢', a5: '意愿合作' },
-        { a1: '苏宁', a4: '小兵嘎嘎', a3: 'www.dede.com', a2: '雀巢', a5: '意愿合作' }
+        { 'a1': '雀巢', 'a2': '淘宝', 'a3': 'xuchunjie88', 'a4': 'https://item.taobao.com/item.htm?id=554026677539', 'a5': '已改价' },
+        { 'a1': '雀巢', 'a2': '淘宝', 'a3': '谢先生和曾女士', 'a4': 'https://item.taobao.com/item.htm?id=545257542029', 'a5': '已改价' },
+        { 'a1': '雀巢', 'a2': '淘宝', 'a3': '江西诚信塑料制品批发', 'a4': 'https://item.taobao.com/item.htm?id=575071096506', 'a5': '已下架' },
+        { 'a1': '雀巢', 'a2': '淘宝', 'a3': '简绿竹', 'a4': 'https://item.taobao.com/item.htm?id=616756299044', 'a5': '已下架' },
+        { 'a1': '雀巢', 'a2': '淘宝', 'a3': '风雨天成', 'a4': 'https://item.taobao.com/item.htm?id=6254848571', 'a5': '已删除' },
+        { 'a1': '雀巢', 'a2': '淘宝', 'a3': '三月三的风醉了', 'a4': 'https://item.taobao.com/item.htm?id=43496601983', 'a5': '已下架' },
+        { 'a1': '雀巢', 'a2': '淘宝', 'a3': '良法商行', 'a4': 'https://item.taobao.com/item.htm?id=520080242292', 'a5': '已改价' },
+        { 'a1': '雀巢', 'a2': '拼多多', 'a3': '安心宝贝', 'a4': 'http://mobile.yangkeduo.com/goods.html?goods_id=109827894347', 'a5': '已删除' },
+        { 'a1': '雀巢', 'a2': '拼多多', 'a3': '锦亭母婴', 'a4': 'http://mobile.yangkeduo.com/goods.html?goods_id=116784935618', 'a5': '已改价' },
+        { 'a1': '雀巢', 'a2': '拼多多', 'a3': '湖南湘舜成贸易', 'a4': 'http://mobile.yangkeduo.com/goods.html?goods_id=136129497059', 'a5': '已改价' },
+        { 'a1': '雀巢', 'a2': '拼多多', 'a3': '童美母婴专营店', 'a4': 'http://mobile.yangkeduo.com/goods.html?goods_id=140716168594', 'a5': '已改价' },
+        { 'a1': '雀巢', 'a2': '天猫', 'a3': '贝爱乐康母婴专营店', 'a4': 'https://detail.tmall.com/item.htm?id=535772716463', 'a5': '已改价' },
+        { 'a1': '雀巢', 'a2': '天猫', 'a3': '俊潮母婴专营店', 'a4': 'https://detail.tmall.com/item.htm?id=7608523426', 'a5': '已改价' },
+        { 'a1': '雀巢', 'a2': '天猫', 'a3': '格林贝尔母婴专营店', 'a4': 'https://detail.tmall.com/item.htm?id=533190777635', 'a5': '已收编' }
       ],
 
       option1: {

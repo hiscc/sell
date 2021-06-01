@@ -6,7 +6,6 @@
 
     <el-form ref="form" :inline="true" :model="params" label-width="80px" class="form-option">
 
-
       <el-form-item prop="settlementOrderState">
         <section class="label-title">平台</section>
         <el-select v-model="params.a3" size="small" clearable style="width: 160px;">
@@ -23,7 +22,6 @@
         <section class="label-title">品牌</section>
         <el-input v-model="params.a2" size="small" placeholder="请输入" style="width: 160px;" clearable />
       </el-form-item>
-
 
       <el-form-item prop="settlementOrderState">
         <section class="label-title">区域</section>
@@ -61,21 +59,19 @@
       size="mini"
     >
 
-      <el-table-column label="平台" prop="a1" />
-      <el-table-column label="品牌" prop="a2" />
+      <el-table-column label="品牌" prop="a1" />
+      <el-table-column label="平台" prop="a2" />
       <el-table-column label="店铺名称/旺旺ID" prop="a3" />
 
       <el-table-column label="店铺等级" prop="a4" />
       <el-table-column label="公司名" prop="a5" />
       <el-table-column label="区域" prop="a6" />
       <el-table-column label="负责人" prop="a7" />
-      <el-table-column label="联系方式" prop="a71" />
-      <!-- <el-table-column label="搜索条件" prop="a8" /> -->
+      <el-table-column label="联系方式" prop="a8" />
 
       <el-table-column label="收编时间" prop="a9" />
 
-
-      <el-table-column label="备注" prop="a11" />
+      <el-table-column label="备注" prop="a10" />
 
     </el-table>
 
@@ -133,12 +129,14 @@ export default {
 
       pageSize: 50,
       curPage: 1,
-      total: 4,
+      total: 6,
       list: [
-        { a1: '淘宝', a3: '小丸子112', a4: '皇冠1', a2: '雀巢', a5: '华为公司', a6: '华南', a7: '小丸',a71: '13909098909', a8: '童装、花果', a9: '2020/09/09', a11: '无', a10: '已整改' },
-        { a1: '拼多多', a3: '贸易名家', a4: '皇冠2', a2: '雀巢', a5: '摆渡有限公司', a6: '华西', a7: '贸易家',a71: '13909098909', a8: '童装、花果', a9: '2020/09/09', a11: '无', a10: '已删除' },
-        { a1: '京东', a3: '荒年记', a4: '皇冠3', a2: '雀巢', a5: '滴滴公司', a6: '华北', a7: '小年记',a71: '13909098909', a8: '童装、花果', a9: '2020/09/09', a11: '无', a10: '意愿合作' },
-        { a1: '苏宁', a3: '小兵嘎嘎', a4: '皇冠4', a2: '雀巢', a5: '美团公司', a6: '华北', a7: '小兵嘎',a71: '13909098909', a8: '童装、花果', a9: '2020/09/09', a11: '无', a10: '意愿合作' }
+        { 'a1': '雀巢', 'a2': '淘宝', 'a3': '乐趣母婴', 'a4': '三皇冠', 'a5': '江苏聚荣食品有限公司', 'a6': '苏州', 'a7': '五爷', 'a8': '13376796563', 'a9': '09/04/2020' },
+        { 'a1': '雀巢', 'a2': '天猫', 'a3': '卓旭食品专营店', 'a4': '天猫', 'a5': '南昌卓旭商贸有限公司', 'a6': '南昌', 'a7': '刘斌', 'a8': '15858586336', 'a9': '09/03/2019' },
+        { 'a1': '雀巢', 'a2': '天猫', 'a3': '宁泽母婴专营店', 'a4': '天猫', 'a5': '济南宁泽贸易有限公司', 'a6': '济南', 'a7': '张帆远', 'a8': '17796337312', 'a9': '09/03/2019' },
+        { 'a1': '雀巢', 'a2': '拼多多', 'a3': '雀巢新星专卖店', 'a4': '拼多多', 'a5': '', 'a6': '', 'a7': '', 'a8': '', 'a9': '10/02/2020' },
+        { 'a1': '雀巢', 'a2': '拼多多', 'a3': '雀巢大沛专卖店', 'a4': '拼多多', 'a5': '上海大沛实业有限公司', 'a6': '上海', 'a7': '陈总', 'a8': '', 'a9': '11/02/2020' },
+        { 'a1': '雀巢', 'a2': '京东', 'a3': '卓旭母婴专营店', 'a4': '京东', 'a5': '南昌卓旭商贸有限公司', 'a6': '南昌', 'a7': '刘斌', 'a8': '15858586336', 'a9': '09/03/2019' }
       ]
 
     }

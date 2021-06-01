@@ -63,18 +63,18 @@
       <el-col :xs="24" :sm="24" :lg="12" :gutter="20">
         <el-row>
           <div class="chart-wrapper">
-            <v-chart class="chart1" :option="option1" ref="chart1"/>
+            <v-chart ref="chart1" class="chart1" :option="option1" />
           </div>
         </el-row>
         <el-row>
           <div class="chart-wrapper">
-            <v-chart class="chart2" :option="option3" ref="chart3"/>
+            <v-chart ref="chart3" class="chart2" :option="option3" />
           </div>
         </el-row>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="12">
         <div class="chart-wrapper">
-          <v-chart class="chart3" :option="option2" ref="chart2"/>
+          <v-chart ref="chart2" class="chart3" :option="option2" />
         </div>
       </el-col>
     </el-row>
@@ -159,6 +159,7 @@ export default {
       },
       option2: {
         title: {
+
           text: '渠道分布占比（违规店铺数量）',
           left: 'center',
           padding: [20, 10]
@@ -175,7 +176,7 @@ export default {
           data: ['微信', '微博', '百度推广', '新浪扶翼', '头条', '抖音', '快手', '360推广', '谷歌', '应用市场']
         },
         label: {
-          formatter: '{b}: {d}%',
+          formatter: '{b}: {d}%'
         },
         grid: {
           left: '3%',
@@ -207,32 +208,35 @@ export default {
       }
     }
   },
-  mounted(){
+
+  mounted() {
     const that = this
-    function done(fn, delay_time){
-        var start_time = null;
-        return function(){
-            var curr_time = +new Date();
-            !start_time && (start_time = curr_time);
-            if (curr_time- start_time >= delay_time){
-                fn.apply(this, arguments);
-                start_time = curr_time;
-            }
+    function done(fn, delay_time) {
+      var start_time = null
+      return function() {
+        var curr_time = +new Date()
+        !start_time && (start_time = curr_time)
+        if (curr_time - start_time >= delay_time) {
+          fn.apply(this, arguments)
+          start_time = curr_time
         }
+      }
     }
-    window.onresize = done(function(){
-　　　 that.$refs.chart1.resize();
-      that.$refs.chart2.resize();
-      that.$refs.chart3.resize();
-    },500)
+    window.onresize = done(function() {
+      that.$refs.chart1.resize()
+      that.$refs.chart2.resize()
+      that.$refs.chart3.resize()
+    }, 500)
     // window.addEventListener("resize", function() {
-      
+
     // }, { once: false});
   },
-  unmounted(){
+
+  unmounted() {
     //  window.removeEventListener("resize", function(){
     //  })
   },
+
   methods: {
     handleSetLineChartData(type) {
       this.$emit('handleSetLineChartData', type)
@@ -332,7 +336,7 @@ export default {
         margin: 26px 0;
       }
     }
-    
+
   }
 }
 
