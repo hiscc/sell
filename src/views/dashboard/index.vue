@@ -7,7 +7,7 @@
           <div class="card-panel-icon-wrapper icon-people">
             <svg-icon icon-class="s1" class-name="card-panel-icon" />
           </div>
-          <div class="card-panel-description">
+          <div class="card-panel-description fixed">
             <div class="card-panel-text">
               最新监控店铺（家）
             </div>
@@ -21,7 +21,7 @@
           <div class="card-panel-icon-wrapper icon-message">
             <svg-icon icon-class="s2" class-name="card-panel-icon" />
           </div>
-          <div class="card-panel-description">
+          <div class="card-panel-description fixed">
             <div class="card-panel-text">
               最新监控链接量（条）
             </div>
@@ -35,7 +35,7 @@
           <div class="card-panel-icon-wrapper icon-money">
             <svg-icon icon-class="s3" class-name="card-panel-icon" />
           </div>
-          <div class="card-panel-description">
+          <div class="card-panel-description fixed">
             <div class="card-panel-text">
               监控sku数量（个）
             </div>
@@ -191,13 +191,13 @@ export default {
             radius: '55%',
             center: ['50%', '50%'],
             data: [
-              { value: 35.28, name: '淘宝' },
-              { value: 19.50, name: '天猫' },
-              { value: 21.39, name: '京东' },
-              { value: 18.5, name: '拼多多' },
-              { value: 2, name: '1688' },
-              { value: 3.12, name: '苏宁' },
-              { value: 0.21, name: '速卖通' }
+              { value: 2942, name: '淘宝' },
+              { value: 1626, name: '天猫' },
+              { value: 1784, name: '京东' },
+              { value: 1543, name: '拼多多' },
+              { value: 167, name: '1688' },
+              { value: 260, name: '苏宁' },
+              { value: 18, name: '速卖通' }
 
             ]
           }
@@ -235,6 +235,7 @@ export default {
   },
 
   methods: {
+
     handleSetLineChartData(type) {
       this.$emit('handleSetLineChartData', type)
     }
