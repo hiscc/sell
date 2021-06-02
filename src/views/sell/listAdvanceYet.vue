@@ -66,12 +66,12 @@
       size="mini"
     >
 
-      <el-table-column label="品牌" prop="a1" />
       <el-table-column label="平台" prop="a2" />
+      <el-table-column label="品牌" prop="a1" />
       <el-table-column label="店铺名称/旺旺ID" prop="a3" />
 
       <el-table-column label="店铺等级" prop="a4" />
-      <el-table-column label="公司名" prop="a5" />
+      <el-table-column label="公司名" prop="a5" width="200" />
       <el-table-column label="区域" prop="a6" />
       <el-table-column label="负责人" prop="a7" />
       <el-table-column label="联系方式" prop="a8" />

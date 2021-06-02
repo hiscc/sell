@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section class="container-title">
-      <span>管控数据分析</span>
+      <span>管控数据汇总</span>
     </section>
 
     <el-form ref="form" :inline="true" :model="params" label-width="80px" class="form-option">
@@ -35,6 +35,11 @@
         </el-select>
       </el-form-item>
 
+      <el-form-item prop="settlementOrderState">
+        <section class="label-title">报表月份</section>
+        <el-date-picker v-model="params.a4" size="small" type="month" value-format="yyyy-MM-dd HH:mm:ss" placeholder="请选择" style="width: 200px;" clearable />
+      </el-form-item>
+
       <el-form-item>
         <section class="label-title" />
         <el-button size="small" type="primary" style="margin-left: 0px" @click="() => loadData('reset')">查询</el-button>
@@ -56,15 +61,16 @@
       size="mini"
     >
 
-      <el-table-column label="平台" prop="a2" />
-      <el-table-column label="品牌" prop="a1" />
+      <el-table-column label="品牌" prop="a1" width="120" />
+      <el-table-column label="平台" prop="a2" width="120" />
+      <el-table-column label="店铺名称/旺旺ID" prop="a3" width="200" />
       <el-table-column label="链接" prop="a4">
         <template slot-scope="scope">
           <a :href="scope.row.a4" target="_blank">{{ scope.row.a4 }}</a>
         </template>
       </el-table-column>
-      <el-table-column label="店铺名称/旺旺ID" prop="a3" />
-      <el-table-column label="处理结果" prop="a5" />
+
+      <el-table-column label="处理结果" prop="a5" width="120" />
 
     </el-table>
 

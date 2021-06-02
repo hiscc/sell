@@ -24,22 +24,35 @@
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">最小违规次数</section>
-        <el-input v-model="params.a2" size="small" placeholder="请输入" style="width: 160px;" clearable />
+        <section class="label-title">违规次数</section>
+        <el-input v-model="params.a2" size="small" placeholder="最小" style="width: 160px;" clearable />
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">最大违规次数</section>
-        <el-input v-model="params.a21" size="small" placeholder="请输入" style="width: 160px;" clearable />
+        <section class="label-title" />
+        <span
+          style="display: block;line-height: 32px;"
+        >-</span>
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">最小违规链接数</section>
-        <el-input v-model="params.a4" size="small" placeholder="请输入" style="width: 160px;" clearable />
+        <section class="label-title" />
+        <el-input v-model="params.a21" size="small" placeholder="最大" style="width: 160px;" clearable />
+      </el-form-item>
+
+      <el-form-item prop="settlementOrderState">
+        <section class="label-title">违规链接数</section>
+        <el-input v-model="params.a4" size="small" placeholder="最小" style="width: 160px;" clearable />
       </el-form-item>
       <el-form-item prop="settlementOrderState">
-        <section class="label-title">最大违规链接数</section>
-        <el-input v-model="params.a41" size="small" placeholder="请输入" style="width: 160px;" clearable />
+        <section class="label-title" />
+        <span
+          style="display: block;line-height: 32px;"
+        >-</span>
+      </el-form-item>
+      <el-form-item prop="settlementOrderState">
+        <section class="label-title" />
+        <el-input v-model="params.a41" size="small" placeholder="最大" style="width: 160px;" clearable />
       </el-form-item>
 
       <el-form-item prop="settlementOrderState">
@@ -70,8 +83,8 @@
 
       <el-table-column label="平台" prop="a1" />
       <el-table-column label="店铺名称/旺旺ID" prop="a2" />
-      <el-table-column label="累计违规次数" prop="a3" />
-      <el-table-column label="去重累计违规链接数" prop="a4" />
+      <el-table-column label="累计违规次数" prop="a3" sortable />
+      <el-table-column label="去重累计违规链接数" prop="a4" sortable />
       <el-table-column label="重点关注SKU" prop="a5" />
 
     </el-table>
@@ -140,12 +153,12 @@ export default {
       curPage: 1,
       total: 6,
       list: [
-        { 'a1': '淘宝', 'a2': '乐趣母婴', 'a3': '8', 'a4': '15', 'a5': '雀巢能恩2 900' },
-        { 'a1': '天猫', 'a2': '卓旭食品专营店', 'a3': '8', 'a4': '2', 'a5': '雀巢能恩2 900' },
-        { 'a1': '天猫', 'a2': '宁泽母婴专营店', 'a3': '8', 'a4': '18', 'a5': '雀巢能恩2 900' },
-        { 'a1': '拼多多', 'a2': '雀巢新星专卖店', 'a3': '8', 'a4': '10', 'a5': '雀巢能恩2 900' },
-        { 'a1': '拼多多', 'a2': '雀巢大沛专卖店', 'a3': '8', 'a4': '6', 'a5': '雀巢能恩2 900' },
-        { 'a1': '京东', 'a2': '卓旭母婴专营店', 'a3': '6', 'a4': '3', 'a5': '雀巢能恩2 900' }
+        { 'a1': '淘宝', 'a2': '乐趣母婴', 'a3': 8, 'a4': 15, 'a5': '雀巢能恩2 900' },
+        { 'a1': '天猫', 'a2': '卓旭食品专营店', 'a3': 8, 'a4': 2, 'a5': '雀巢能恩2 900' },
+        { 'a1': '天猫', 'a2': '宁泽母婴专营店', 'a3': 8, 'a4': 18, 'a5': '雀巢能恩2 900' },
+        { 'a1': '拼多多', 'a2': '雀巢新星专卖店', 'a3': 8, 'a4': 10, 'a5': '雀巢能恩2 900' },
+        { 'a1': '拼多多', 'a2': '雀巢大沛专卖店', 'a3': 8, 'a4': 6, 'a5': '雀巢能恩2 900' },
+        { 'a1': '京东', 'a2': '卓旭母婴专营店', 'a3': 6, 'a4': 3, 'a5': '雀巢能恩2 900' }
       ]
 
     }

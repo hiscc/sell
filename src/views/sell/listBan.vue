@@ -61,7 +61,8 @@
       size="mini"
     >
 
-      <el-table-column label="平台" prop="a1" />
+      <el-table-column label="平台" prop="a2" />
+      <el-table-column label="品牌" prop="a1" />
       <el-table-column label="店铺名称/旺旺ID" prop="a3" />
 
       <el-table-column label="店铺等级" prop="a4" />

@@ -63,12 +63,11 @@
       highlight-current-row
       :header-row-style="{'background': '#F5F5F5'}"
       max-height="500"
-      height="500"
       size="mini"
     >
 
-      <el-table-column label="型号" prop="a1" />
       <el-table-column label="品牌" prop="a2" />
+      <el-table-column label="型号" prop="a1" />
       <el-table-column label="平台" prop="a3" />
       <el-table-column label="违规链接量" prop="a4" sortable />
       <el-table-column label="总销售额（万元）" prop="a5" sortable />

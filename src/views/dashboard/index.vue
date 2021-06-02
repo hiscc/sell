@@ -9,9 +9,9 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              最新监控店铺量
+              最新监控店铺（家）
             </div>
-            <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
+            <count-to :start-val="0" :end-val="1187" :duration="2600" class="card-panel-num" />
           </div>
         </div>
       </el-col>
@@ -23,9 +23,9 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              最新监控链接量
+              最新监控链接量（条）
             </div>
-            <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
+            <count-to :start-val="0" :end-val="8339" :duration="3000" class="card-panel-num" />
           </div>
         </div>
       </el-col>
@@ -37,9 +37,9 @@
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              违规店铺量
+              监控sku数量（个）
             </div>
-            <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
+            <count-to :start-val="0" :end-val="3" :duration="3200" class="card-panel-num" />
           </div>
         </div>
       </el-col>
@@ -53,7 +53,7 @@
             <div class="card-panel-text">
               预计挽回金额（万元）
             </div>
-            <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+            <count-to :start-val="0" :end-val="865" :duration="3600" class="card-panel-num" />
           </div>
         </div>
       </el-col>
@@ -109,7 +109,7 @@ export default {
         xAxis: {
         },
         yAxis: {
-          data: ['Apple', 'Huawei', 'Mi2020', 'Ads10', '头条200', 'Gucci', 'Amera', 'English', 'Aero', 'Doing'],
+          data: ['谢先生和曾女士', '宏鑫母婴店', '贝爱乐康母婴专营店', '俊潮母婴专营店', '贝妈坊母婴专营店', '唯小宝旗舰店', '风雨天成', '优宏母婴专营店', '迪贝思食品专营店', 'xuchunjie88'],
           axisLabel: {
             interval: 0
             // rotate:40
@@ -118,7 +118,7 @@ export default {
         series: [
           {
             type: 'bar',
-            data: [89, 300, 36, 10, 10, 20, 89, 300, 203, 99, 20, 66]
+            data: [63, 44, 26, 25, 19, 15, 12, 11, 9, 7]
           }
         ]
       },
@@ -141,7 +141,7 @@ export default {
         xAxis: {
         },
         yAxis: {
-          data: ['上海', '杭州', '北京', '天津', '西安', '东莞', '成都', '深圳', '广西', '云南'],
+          data: ['江苏苏州', '江西南昌', '广东广州', '安徽芜湖', '湖北武汉', '上海', '广东深圳', '湖南长沙', '安徽蚌埠', '广东潮州'],
           axisLabel: {
             interval: 0
             // rotate:40
@@ -150,7 +150,7 @@ export default {
         series: [
           {
             type: 'bar',
-            data: [20, 89, 300, 203, 99, 89, 300, 36, 10, 10],
+            data: [8, 8, 7, 5, 4, 4, 3, 3, 2, 2],
             itemStyle: {
               color: 'rgba(30, 198, 137, 1)'
             }
@@ -173,7 +173,7 @@ export default {
           // left: '10',
           right: '12%',
           bottom: '20',
-          data: ['微信', '微博', '百度推广', '新浪扶翼', '头条', '抖音', '快手', '360推广', '谷歌', '应用市场']
+          data: ['淘宝', '天猫', '京东', '拼多多', '1688', '苏宁', '速卖通']
         },
         label: {
           formatter: '{b}: {d}%'
@@ -191,16 +191,13 @@ export default {
             radius: '55%',
             center: ['50%', '50%'],
             data: [
-              { value: 335, name: '微信' },
-              { value: 310, name: '微博' },
-              { value: 234, name: '百度推广' },
-              { value: 135, name: '新浪扶翼' },
-              { value: 1548, name: '头条' },
-              { value: 1548, name: '抖音' },
-              { value: 1548, name: '快手' },
-              { value: 1548, name: '360推广' },
-              { value: 1548, name: '谷歌' },
-              { value: 1548, name: '应用市场' }
+              { value: 35.28, name: '淘宝' },
+              { value: 19.50, name: '天猫' },
+              { value: 21.39, name: '京东' },
+              { value: 18.5, name: '拼多多' },
+              { value: 2, name: '1688' },
+              { value: 3.12, name: '苏宁' },
+              { value: 0.21, name: '速卖通' }
 
             ]
           }
