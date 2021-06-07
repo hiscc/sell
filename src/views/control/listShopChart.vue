@@ -124,7 +124,10 @@ export default {
           left: 'center',
           padding: [20, 10]
         },
-        tooltip: {},
+        tooltip: {
+          // trigger: 'item',
+          // formatter: '{a} {c}'
+        },
         legend: {
           // data:['销量']
           right: '20'
@@ -145,18 +148,44 @@ export default {
             // rotate:40
           }
         },
+
         series: [
           {
             name: '处理量',
             type: 'bar',
-            data: [30, 32, 26, 19, 89, 22, 23, 24, 25, 26, 27, 31]
+            data: [30, 32, 26, 19, 89, 22, 23, 24, 25, 26, 27, 31],
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,		// 开启显示
+                  position: 'top',	// 在上方显示
+                  textStyle: { // 数值样式
+                    color: 'black',
+                    fontSize: 16
+                  }
+                }
+              }
+            }
           },
           {
             name: '处理成功量',
             type: 'bar',
             data: [22, 16, 14, 8, 43, 14, 15, 16, 22, 18, 19, 19
-            ]
+            ],
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true,		// 开启显示
+                  position: 'top',	// 在上方显示
+                  textStyle: { // 数值样式
+                    color: 'black',
+                    fontSize: 16
+                  }
+                }
+              }
+            }
           }
+
         ]
       }
 

@@ -5,7 +5,7 @@
       <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
         <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
           <div class="card-panel-icon-wrapper icon-people">
-            <svg-icon icon-class="s1" class-name="card-panel-icon" />
+            <svg-icon icon-class="s6" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description fixed">
             <div class="card-panel-text">
@@ -19,7 +19,7 @@
       <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
         <div class="card-panel" @click="handleSetLineChartData('messages')">
           <div class="card-panel-icon-wrapper icon-message">
-            <svg-icon icon-class="s2" class-name="card-panel-icon" />
+            <svg-icon icon-class="form" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description fixed">
             <div class="card-panel-text">
@@ -33,7 +33,7 @@
       <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
         <div class="card-panel" @click="handleSetLineChartData('purchases')">
           <div class="card-panel-icon-wrapper icon-money">
-            <svg-icon icon-class="s3" class-name="card-panel-icon" />
+            <svg-icon icon-class="dashboard" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description fixed">
             <div class="card-panel-text">
@@ -47,7 +47,7 @@
       <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
         <div class="card-panel" @click="handleSetLineChartData('shoppings')">
           <div class="card-panel-icon-wrapper icon-shopping">
-            <svg-icon icon-class="s4" class-name="card-panel-icon" />
+            <svg-icon icon-class="s3" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description fixed">
             <div class="card-panel-text">
@@ -92,7 +92,7 @@ export default {
     return {
       option1: {
         title: {
-          text: '违规店铺销售TOP10（淘宝）',
+          text: '违规店铺销量TOP10（淘宝）',
           left: 'center',
           padding: [20, 10]
         },

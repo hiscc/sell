@@ -58,8 +58,8 @@ export const constantRoutes = [
         name: 'Dashboard',
         component: () => import('@/views/dashboard/index'),
         meta: { title: '首页', icon: 'dashboard', affix: true }
-      },
-  ]
+      }
+    ]
   },
 
   {
@@ -68,20 +68,20 @@ export const constantRoutes = [
     redirect: '/channel/index',
     name: 'Example',
     // hidden: true,
-    meta: { title: '渠道数据分析', icon: 's1' },
+    meta: { title: '渠道数据分析', icon: 's6' },
     children: [
       {
         path: 'list',
         name: '结算单管理',
         component: () => import('@/views/channel/listProduct'),
-        meta: { title: '产品违规情况分析', }
+        meta: { title: '产品违规情况分析' }
       },
       {
         path: 'listShop',
         name: '结算单管理',
         component: () => import('@/views/channel/listShop'),
-        meta: { title: '店铺违规情况分析', }
-      },
+        meta: { title: '店铺违规情况分析' }
+      }
     ]
   },
   {
@@ -96,14 +96,14 @@ export const constantRoutes = [
         path: 'listShop',
         name: '管控数据分析',
         component: () => import('@/views/control/listShop'),
-        meta: { title: '管控数据汇总', }
+        meta: { title: '管控数据汇总' }
       },
       {
         path: 'listShopChart',
         name: '管控数据分析',
         component: () => import('@/views/control/listShopChart'),
-        meta: { title: '管控数据图表', }
-      },
+        meta: { title: '管控数据图表' }
+      }
     ]
   },
 
@@ -119,31 +119,28 @@ export const constantRoutes = [
         path: 'listBase',
         name: '授权店铺违规情况',
         component: () => import('@/views/sell/listBase'),
-        meta: { title: '授权店铺违规情况', }
+        meta: { title: '授权店铺违规情况' }
       },
       {
         path: 'listAdvanceGet',
         name: '已收编店铺',
         component: () => import('@/views/sell/listAdvanceGet'),
-        meta: { title: '已收编店铺', }
+        meta: { title: '已收编店铺' }
       },
       {
         path: 'listAdvanceYet',
         name: '待收编店铺',
         component: () => import('@/views/sell/listAdvanceYet'),
-        meta: { title: '待收编店铺', }
+        meta: { title: '待收编店铺' }
       },
       {
         path: 'listBan',
         name: '黑名单管理',
         component: () => import('@/views/sell/listBan'),
-        meta: { title: '黑名单管理', }
-      },
+        meta: { title: '黑名单管理' }
+      }
     ]
   },
-
-
-  
 
   {
     path: 'external-link',
