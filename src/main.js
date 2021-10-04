@@ -44,7 +44,7 @@ Vue.component('v-chart', ECharts)
 import plTable from 'pl-table'
 Vue.use(plTable)
 
-import { uploadFile, post } from '@/utils/request'
+import { uploadFile, request } from '@/utils/request'
 import Api from '@/constant/api'
 
 import '@/styles/element-variables.scss'
@@ -62,7 +62,7 @@ Vue.prototype.Pagination = Pagination
 Vue.prototype.handleRes = handleRes
 Vue.prototype.Api = Api
 Vue.prototype.uploadFile = uploadFile
-Vue.prototype.post = post
+Vue.prototype.request = request
 
 Vue.prototype.phoneValid = phoneValid
 
@@ -89,7 +89,7 @@ Vue.config.productionTip = false
 
 // 注销 console
 if (process.env.NODE_ENV !== 'development') {
-  window.console.log = _ => {}
+  window.console.log = _ => { }
 }
 
 new Vue({

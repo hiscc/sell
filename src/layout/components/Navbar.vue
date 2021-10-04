@@ -1,6 +1,10 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <hamburger
+      :is-active="sidebar.opened"
+      class="hamburger-container"
+      @toggleClick="toggleSideBar"
+    />
 
     <breadcrumb class="breadcrumb-container" />
 
@@ -10,19 +14,17 @@
       </a> -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="userInfo.headImg" class="user-avatar">
+          <img :src="userInfo.headImg" class="user-avatar" />
           <span class="user-name">{{ userInfo.name }}</span>
           <i class="el-icon-more user-options" />
         </div>
 
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
-            <el-dropdown-item>
-              首页
-            </el-dropdown-item>
+            <el-dropdown-item> 首页 </el-dropdown-item>
           </router-link>
           <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">登出帐户</span>
+            <span style="display: block">登出帐户</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -31,11 +33,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
-import { getToken, setToken, removeToken } from '@/utils/auth'
-import me from '@/assets/me.png'
+import { mapGetters } from "vuex"
+import Breadcrumb from "@/components/Breadcrumb"
+import Hamburger from "@/components/Hamburger"
+import { getToken, setToken, removeToken } from "@/utils/auth"
+import me from "@/assets/me.png"
 
 export default {
   components: {
@@ -43,10 +45,7 @@ export default {
     Hamburger
   },
   computed: {
-    ...mapGetters([
-      'sidebar',
-      'avatar'
-    ])
+    ...mapGetters(["sidebar", "avatar"])
   },
   data() {
     return {
@@ -62,7 +61,7 @@ export default {
   },
   methods: {
     toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar')
+      this.$store.dispatch("app/toggleSideBar")
     },
     loadUser() {
       // this.post({ url: this.Api.userInfo }).then(r => {
@@ -84,11 +83,8 @@ export default {
       // })
     },
     async logout() {
-      const cbUrl = window.location.href
-
-      // removeToken()
-      this.$router.push(`/dashboard`)
-      // window.location = logoutUrl
+      removeToken()
+      this.$router.replace(`/login`)
     }
   }
 }
@@ -102,18 +98,18 @@ export default {
   overflow: hidden;
   position: relative;
   background: $menuBg;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
     line-height: 55px;
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
-      background: rgba(0, 0, 0, .025)
+      background: rgba(0, 0, 0, 0.025);
     }
   }
 
@@ -130,14 +126,14 @@ export default {
     &:focus {
       outline: none;
     }
-    .left{
+    .left {
       color: white;
       margin: 0 20px;
       position: relative;
       // bottom: 12px;
       font-size: 14px;
 
-      i{
+      i {
         display: inline-block;
         width: 22px;
         height: 22px;
@@ -159,10 +155,10 @@ export default {
 
       &.hover-effect {
         cursor: pointer;
-        transition: background .3s;
+        transition: background 0.3s;
 
         &:hover {
-          background: rgba(0, 0, 0, .025)
+          background: rgba(0, 0, 0, 0.025);
         }
       }
     }
@@ -183,7 +179,7 @@ export default {
           border-radius: 50%;
           margin-right: 10px;
         }
-        .user-name{
+        .user-name {
           color: white;
           margin-right: 20px;
         }

@@ -45,7 +45,7 @@ export function parseTime(time, cFormat) {
   const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
     const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
-    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ] }
+    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value] }
     return value.toString().padStart(2, '0')
   })
   return time_str
@@ -105,12 +105,12 @@ export function param2Obj(url) {
   }
   return JSON.parse(
     '{"' +
-      decodeURIComponent(search)
-        .replace(/"/g, '\\"')
-        .replace(/&/g, '","')
-        .replace(/=/g, '":"')
-        .replace(/\+/g, ' ') +
-      '"}'
+    decodeURIComponent(search)
+      .replace(/"/g, '\\"')
+      .replace(/&/g, '","')
+      .replace(/=/g, '":"')
+      .replace(/\+/g, ' ') +
+    '"}'
   )
 }
 
@@ -123,9 +123,9 @@ export function filterParams(params = {}) {
   return params
 }
 
-export function handleRes(r, res = _ => {}, rej = _ => {}) {
+export function handleRes(r, res = _ => { }, rej = _ => { }) {
   const { code, msg } = r
-  if (code == '1000') {
+  if (code == '200') {
     this.$message({
       message: msg,
       type: 'success'
@@ -146,4 +146,18 @@ export function handleFile(fileName = '导出文件.xls', data) {
   link.href = window.URL.createObjectURL(blob)
   link.download = decodeURIComponent(fileName)
   link.click()
+}
+
+
+export function getTimestamp(d) {
+  const Time = d ? new Date(d) : new Date()
+  const year = Time.getFullYear()
+  const month = `${Time.getMonth() + 1}`.padStart(2, '0')
+  const date = `${Time.getDate()}`.padStart(2, '0')
+  const hours = `${Time.getHours()}`.padStart(2, '0')
+  const minuts = `${Time.getMinutes()}`.padStart(2, '0')
+  const seconds = `${Time.getSeconds()}`.padStart(2, '0')
+  const milliseconds = `${Time.getMilliseconds()}`.padStart(3, '0')
+
+  return `${year}${month}${date}${hours}${minuts}${seconds}${milliseconds}`
 }

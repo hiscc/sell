@@ -1,3 +1,11 @@
+<!--
+ * @Author: km2021
+ * @Date: 2020-11-16 23:14:39
+ * @LastEditTime: 2021-06-15 14:05:30
+ * @Description:布局文件
+ * @FilePath: /sell-web/src/layout/index.vue
+ *
+-->
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
@@ -17,14 +25,13 @@ import { Navbar, Sidebar, AppMain, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import { mapState } from 'vuex'
 
-
 export default {
   name: 'Layout',
   components: {
     Navbar,
     Sidebar,
     AppMain,
-    TagsView,
+    TagsView
   },
   mixins: [ResizeMixin],
   computed: {
@@ -33,7 +40,7 @@ export default {
       device: state => state.app.device,
       showSettings: state => state.settings.showSettings,
       needTagsView: state => state.settings.tagsView,
-      fixedHeader: state => state.settings.fixedHeader,
+      fixedHeader: state => state.settings.fixedHeader
     }),
     classObj() {
       return {
