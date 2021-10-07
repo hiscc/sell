@@ -177,7 +177,7 @@ export default {
         const { msg, code } = res
         if (code == 200) {
           setToken(msg)
-          window.location.assign("/#/")
+          window.location.assign("/")
         }
       })
     },
