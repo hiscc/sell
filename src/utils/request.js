@@ -1,7 +1,7 @@
 /*
  * @Author: km2021
  * @Date: 2020-11-16 23:14:39
- * @LastEditTime: 2021-10-04 09:46:57
+ * @LastEditTime: 2021-10-07 14:22:43
  * @Description: 
  * @FilePath: /sell-web/src/utils/request.js
  * 
@@ -9,7 +9,7 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import store from '@/store'
-import { getToken, setToken, authReset } from '@/utils/auth'
+import { getToken, setToken, removeToken } from '@/utils/auth'
 import qs from 'qs'
 import { getTimestamp } from './index'
 
@@ -30,11 +30,11 @@ service.interceptors.response.use(function (res) {
   if (code != 200) {
     Message({ type: 'error', message: msg || '账号密码错误' })
   }
-  // if (code == 4001 || !getToken) {
-  //   authReset()
-  //   window.location.assign('/#/login')
-  //   return
-  // }
+  if (code == 2108 || !getToken) {
+    removeToken()
+    window.location.assign('/#/login')
+    return
+  }
   return res.data
 
 }, function (error) {
