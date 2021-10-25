@@ -1,7 +1,7 @@
 /*
  * @Author: km2021
  * @Date: 2020-11-16 23:14:39
- * @LastEditTime: 2021-10-07 15:09:20
+ * @LastEditTime: 2021-10-25 23:06:57
  * @Description: 
  * @FilePath: /sell-web/src/utils/request.js
  * 
@@ -32,7 +32,7 @@ service.interceptors.response.use(function (res) {
   }
   if (code == 2108 || !getToken) {
     removeToken()
-    window.location.assign('/login')
+    window.location.assign('/sell/login')
     return
   }
   return res.data
