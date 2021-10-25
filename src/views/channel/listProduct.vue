@@ -18,7 +18,7 @@
         />
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">型号</section>
         <el-select
           v-model="params.taskName"
@@ -27,7 +27,7 @@
           style="width: 160px"
         >
           <el-option
-            v-for="item in taskList"
+            v-for="item in taskNameList"
             :key="item"
             :label="item"
             :value="item"
@@ -35,7 +35,7 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">品牌</section>
         <el-select
           v-model="params.brand"
@@ -44,7 +44,7 @@
           style="width: 160px"
         >
           <el-option
-            v-for="item in settlementOrderStateList2"
+            v-for="item in []"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -52,7 +52,7 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">平台</section>
         <el-select
           v-model="params.instituteType"
@@ -61,10 +61,10 @@
           style="width: 160px"
         >
           <el-option
-            v-for="item in instituteList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in institueList"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key"
           />
         </el-select>
       </el-form-item>
@@ -97,9 +97,14 @@
       <el-table-column label="型号" prop="taskName" />
       <el-table-column label="平台" prop="instituteType" />
       <el-table-column label="违规链接量" prop="linkNum" sortable />
-      <el-table-column label="总销售额（万元）" prop="amount" sortable />
-      <el-table-column label="限价" prop="monitorPrice" />
-      <el-table-column label="均价" prop="avgPrice" />
+      <el-table-column
+        label="总销售额（万元）"
+        prop="amount"
+        sortable
+        :formatter="amountFilter"
+      />
+      <el-table-column label="限价（元）" prop="monitorPrice" />
+      <el-table-column label="均价（元）" prop="avgPrice" />
       <el-table-column label="月均折扣率" prop="depositRate" sortable />
     </el-table>
 
@@ -142,23 +147,9 @@ export default {
   data() {
     return {
       filterAll: false,
-      instituteList: [
-        { label: "A0", value: 0 },
-        { label: "A1", value: -1 },
-        { label: "A2", value: 1 }
-      ],
-      taskList: [],
-      settlementOrderStateList2: [
-        { label: "Apple", value: 0 },
-        { label: "Android", value: -1 },
-        { label: "Mi", value: 1 }
-      ],
-      settlementOrderStateList3: [
-        { label: "淘宝", value: 0 },
-        { label: "拼多多", value: -1 },
-        { label: "京东", value: 1 },
-        { label: "苏宁", value: 1 }
-      ],
+      institueList: [],
+      taskNameList: [],
+      feedbackList: [],
 
       params: {
         date: "",
@@ -299,7 +290,7 @@ export default {
       }).then((res) => {
         const { msg, code, data } = res
         if (code == 200) {
-          // this.instituteList = data
+          this.institueList = data
         }
       })
       this.request({
@@ -307,7 +298,7 @@ export default {
       }).then((res) => {
         const { msg, code, data } = res
         if (code == 200) {
-          this.taskList = data
+          this.taskNameList = data
         }
       })
     },
@@ -337,6 +328,11 @@ export default {
       // post({ url: Api.orderExport, data }).then((r) => {
       //   this.handleRes(r)
       // })
+    },
+    amountFilter(row, column, cellValue, index) {
+      if (cellValue) {
+        return Number(cellValue) / 10000
+      }
     },
 
     resetForm() {

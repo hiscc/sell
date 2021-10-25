@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section class="container-title">
-      <span>待收编店铺</span>
+      <span>已收编店铺</span>
     </section>
 
     <el-form
@@ -11,7 +11,7 @@
       label-width="80px"
       class="form-option"
     >
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">平台</section>
         <el-select
           v-model="params.instituteType"
@@ -20,18 +20,18 @@
           style="width: 160px"
         >
           <el-option
-            v-for="item in settlementOrderStateList3"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in institueList"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key"
           />
         </el-select>
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">品牌</section>
         <el-input
-          v-model="params.brand"
+          v-model="params.a2"
           size="small"
           placeholder="请输入"
           style="width: 160px"
@@ -39,7 +39,7 @@
         />
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">区域</section>
         <el-input
           v-model="params.a6"
@@ -50,10 +50,10 @@
         />
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">店铺名称/旺旺ID</section>
         <el-input
-          v-model="params.shopId"
+          v-model="params.companyName"
           size="small"
           placeholder="请输入"
           style="width: 160px"
@@ -61,7 +61,7 @@
         />
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">反馈结果</section>
         <el-select
           v-model="params.feedback"
@@ -70,10 +70,10 @@
           style="width: 160px"
         >
           <el-option
-            v-for="item in settlementOrderStateList1"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in feedbackList"
+            :key="item.dictValue"
+            :label="item.dictLabel"
+            :value="item.dictValue"
           />
         </el-select>
       </el-form-item>
@@ -105,14 +105,16 @@
     >
       <el-table-column label="平台" prop="instituteType" />
       <el-table-column label="品牌" prop="brand" />
-      <el-table-column label="店铺名称/旺旺ID" prop="a3" width="200" />
+      <el-table-column label="店铺名称/旺旺ID" prop="shopId" />
 
       <el-table-column label="店铺等级" prop="shopLevel" />
       <el-table-column label="公司名" prop="companyName" width="200" />
       <el-table-column label="区域" prop="area" />
-      <el-table-column label="负责人" prop="contactInformation" />
+      <el-table-column label="负责人" prop="createUserName" />
       <el-table-column label="联系方式" prop="contactInformation" width="160" />
-      <el-table-column label="反馈结果" prop="feedback" />
+
+      <el-table-column label="收编时间" prop="incorporateTime" />
+
       <el-table-column label="备注" prop="remark" />
     </el-table>
 
@@ -147,7 +149,7 @@ export default {
     settlementOrderStateFilter(item) {
       const stateMap = {
         "-1": "已作废",
-        "": "正常",
+        0: "正常",
         1: "已归档"
       }
       return stateMap[item]
@@ -155,7 +157,8 @@ export default {
   },
   data() {
     return {
-      filterAll: false,
+      institueList: [],
+      feedbackList: [],
 
       settlementOrderStateList1: [
         { label: "已下架", value: 0 },
@@ -176,10 +179,13 @@ export default {
         curPage: 1,
         pageSize: 50,
         instituteType: "",
-        brand: "",
-        area: "",
-        shopId: "",
-        feedback: ""
+        shopName: "",
+        pointSku: "",
+        minViolationNum: "",
+        minDistinctViolationNum: "",
+        maxViolationNum: "",
+        maxDistinctViolationNum: "",
+        instituteType: ""
       },
 
       total: 19,
@@ -188,181 +194,101 @@ export default {
         {
           a1: "雀巢",
           a2: "淘宝",
-          a3: "简绿竹",
-          a4: "五钻",
-          a5: "天泽商贸有限公司",
-          a6: "江苏苏州",
-          a7: "邱园",
+          a3: "乐趣母婴",
+          a4: "三皇冠",
+          a5: "江苏聚荣食品有限公司",
+          a6: "苏州",
+          a7: "五爷",
           a8: "13376796563",
-          a9: "有意愿"
-        },
-        {
-          a1: "雀巢",
-          a2: "淘宝",
-          a3: "宏鑫母婴店",
-          a4: "二皇冠",
-          a5: "锐迈商贸有限公司",
-          a6: "江西南昌",
-          a7: "张斌",
-          a8: "15858586336",
-          a9: "沟通中"
-        },
-        {
-          a1: "雀巢",
-          a2: "淘宝",
-          a3: "金福娃母婴",
-          a4: "五皇冠",
-          a5: "嘉合兴商贸有限公司",
-          a6: "安徽芜湖",
-          a7: "吴彤彤",
-          a8: "17796337312",
-          a9: "沟通中"
-        },
-        {
-          a1: "雀巢",
-          a2: "淘宝",
-          a3: "梦中甜心",
-          a4: "二皇冠",
-          a5: "勇胜商贸有限公司",
-          a6: "江西南昌",
-          a7: "冰哥",
-          a8: "13104308982",
-          a9: "未回复"
-        },
-        {
-          a1: "雀巢",
-          a2: "淘宝",
-          a3: "帅哥倩女母婴",
-          a4: "四钻",
-          a5: "个体商户",
-          a6: "安徽芜湖",
-          a7: "杨芳",
-          a8: "13376796509",
-          a9: "未回复"
-        },
-        {
-          a1: "雀巢",
-          a2: "淘宝",
-          a3: "风雨天成",
-          a4: "五钻",
-          a5: "个体商户",
-          a6: "广东广州",
-          a7: "仇经理",
-          a8: "15858586377",
-          a9: "未回复"
+          a9: "09/04/2020"
         },
         {
           a1: "雀巢",
           a2: "天猫",
-          a3: "贝妈坊母婴专营店",
+          a3: "卓旭食品专营店",
           a4: "天猫",
-          a5: "武汉贝妈坊贸易有限公司",
-          a6: "武汉",
-          a7: "陈总",
-          a8: "13706541234",
-          a9: "有意愿"
-        },
-        {
-          a1: "雀巢",
-          a2: "天猫",
-          a3: "贝斐母婴专营店",
-          a4: "天猫",
-          a5: "湖南贝斐贸易有限公司",
-          a6: "湖南长沙",
+          a5: "南昌卓旭商贸有限公司",
+          a6: "南昌",
           a7: "刘斌",
-          a8: "13074330901",
-          a9: "有意愿"
+          a8: "15858586336",
+          a9: "09/03/2019"
         },
         {
           a1: "雀巢",
           a2: "天猫",
-          a3: "贝爱乐康母婴专营店",
+          a3: "宁泽母婴专营店",
           a4: "天猫",
-          a5: "湖南贝爱乐康贸易有限公司",
-          a6: "湖南长沙",
-          a7: "罗媛",
-          a8: "18206549901",
-          a9: "未回复"
-        },
-        {
-          a1: "雀巢",
-          a2: "天猫",
-          a3: "俊潮母婴专营店",
-          a4: "天猫",
-          a5: "安徽俊潮商贸有限公司",
-          a6: "安徽蚌埠",
-          a7: "罗想",
-          a8: "13898786336",
-          a9: "未回复"
-        },
-        {
-          a1: "雀巢",
-          a2: "天猫",
-          a3: "格林贝尔母婴专营店",
-          a4: "天猫",
-          a5: "江苏格林贝尔贸易有限公司",
-          a6: "江苏苏州",
-          a7: "lily",
-          a8: "微信 lovelily-001",
-          a9: "未回复"
+          a5: "济南宁泽贸易有限公司",
+          a6: "济南",
+          a7: "张帆远",
+          a8: "17796337312",
+          a9: "09/03/2019"
         },
         {
           a1: "雀巢",
           a2: "拼多多",
-          a3: "安心宝贝",
+          a3: "雀巢新星专卖店",
           a4: "拼多多",
-          a5: "个体商户",
-          a6: "安徽蚌埠",
-          a7: "陈商",
-          a8: "13908902232",
-          a9: "未回复"
+          a5: "新星商贸有限公司",
+          a6: "上海",
+          a7: "王总",
+          a8: "微信 wangxinhe098",
+          a9: "10/02/2020"
         },
         {
           a1: "雀巢",
           a2: "拼多多",
-          a3: "锦亭母婴",
+          a3: "雀巢大沛专卖店",
           a4: "拼多多",
-          a5: "个体商户",
-          a6: "湖南长沙",
-          a7: "李丽华",
-          a8: "13758586336",
-          a9: "未回复"
+          a5: "上海大沛实业有限公司",
+          a6: "上海",
+          a7: "陈总",
+          a8: "18839336781",
+          a9: "11/02/2020"
         },
         {
           a1: "雀巢",
-          a2: "拼多多",
-          a3: "湖南湘舜成贸易",
-          a4: "拼多多",
-          a5: "思泉商贸有限公司",
-          a6: "湖北武汉",
-          a7: "赵华",
-          a8: "18996337312",
-          a9: "未回复"
-        },
-        {
-          a1: "雀巢",
-          a2: "拼多多",
-          a3: "童美母婴专营店",
-          a4: "拼多多",
-          a5: "鸣远商贸有限公司",
-          a6: "广东深圳",
-          a7: "高风",
-          a8: "13800902332",
-          a9: "未回复"
+          a2: "京东",
+          a3: "卓旭母婴专营店",
+          a4: "京东",
+          a5: "南昌卓旭商贸有限公司",
+          a6: "南昌",
+          a7: "刘斌",
+          a8: "15858586336",
+          a9: "09/03/2019"
         }
       ]
     }
   },
   mounted() {
+    this.loadBase()
     this.loadData()
   },
   computed: {
     ...mapGetters(["data"])
   },
   methods: {
+    loadBase() {
+      this.request({
+        url: "/common/getInstitute"
+      }).then((res) => {
+        const { msg, code, data } = res
+        if (code == 200) {
+          this.institueList = data
+        }
+      })
+      this.request({
+        url: "/common/getFeedback"
+      }).then((res) => {
+        const { msg, code, data } = res
+        if (code == 200) {
+          this.feedbackList = data
+        }
+      })
+    },
     loadData() {
       this.request({
-        url: "/distribution/pageDistributionShop",
+        url: "/distribution/incorporatingShop",
         data: this.filterParams(this.params)
       }).then((res) => {
         const { msg, code, data } = res
@@ -374,7 +300,6 @@ export default {
         }
       })
     },
-
     handleExport() {
       // const { pageSize, curPage, params } = this
       // const data = {

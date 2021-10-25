@@ -20,10 +20,10 @@
           style="width: 160px"
         >
           <el-option
-            v-for="item in settlementOrderStateList3"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in institueList"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key"
           />
         </el-select>
       </el-form-item>
@@ -182,12 +182,7 @@ export default {
         { label: "Android", value: -1 },
         { label: "Mi", value: 1 }
       ],
-      settlementOrderStateList3: [
-        { label: "淘宝", value: 0 },
-        { label: "拼多多", value: -1 },
-        { label: "京东", value: 1 },
-        { label: "苏宁", value: 1 }
-      ],
+      institueList: [],
 
       params: {
         curPage: 1,
@@ -269,6 +264,7 @@ export default {
     }
   },
   mounted() {
+    this.loadInstitue()
     this.loadData()
   },
   computed: {
@@ -289,6 +285,16 @@ export default {
         }
       })
     },
+
+    loadInstitue() {
+      this.request({
+        url: "/common/getInstitute"
+      }).then((res) => {
+        const { msg, code, data } = res
+        this.institueList = data
+      })
+    },
+
     handleExport() {
       const { pageSize, curPage, params } = this
       const data = {

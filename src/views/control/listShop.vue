@@ -20,10 +20,10 @@
           style="width: 160px"
         >
           <el-option
-            v-for="item in settlementOrderStateList3"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in institueList"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key"
           />
         </el-select>
       </el-form-item>
@@ -48,10 +48,10 @@
           style="width: 160px"
         >
           <el-option
-            v-for="item in settlementOrderStateList1"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in feedbackList"
+            :key="item.dictValue"
+            :label="item.dictLabel"
+            :value="item.dictValue"
           />
         </el-select>
       </el-form-item>
@@ -147,20 +147,9 @@ export default {
     return {
       filterAll: false,
 
-      settlementOrderStateList1: [
-        { label: "已下架", value: 0 },
-        { label: "已整改", value: -1 },
-        { label: "已删除", value: 1 },
-        { label: "已收编", value: 2 },
-        { label: "已撤诉", value: 3 },
-        { label: "意愿合作", value: 4 }
-      ],
-      settlementOrderStateList3: [
-        { label: "淘宝", value: 0 },
-        { label: "拼多多", value: -1 },
-        { label: "京东", value: 1 },
-        { label: "苏宁", value: 2 }
-      ],
+      institueList: [],
+      taskNameList: [],
+      feedbackList: [],
 
       params: {
         curPage: 1,
@@ -279,12 +268,31 @@ export default {
     }
   },
   mounted() {
+    this.loadBase()
     this.loadData()
   },
   computed: {
     ...mapGetters(["data"])
   },
   methods: {
+    loadBase() {
+      this.request({
+        url: "/common/getInstitute"
+      }).then((res) => {
+        const { msg, code, data } = res
+        if (code == 200) {
+          this.institueList = data
+        }
+      })
+      this.request({
+        url: "/common/getFeedback"
+      }).then((res) => {
+        const { msg, code, data } = res
+        if (code == 200) {
+          this.feedbackList = data
+        }
+      })
+    },
     loadData() {
       this.request({
         url: "/management/pageData",

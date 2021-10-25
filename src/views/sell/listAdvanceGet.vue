@@ -11,24 +11,24 @@
       label-width="80px"
       class="form-option"
     >
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">平台</section>
         <el-select
-          v-model="params.a3"
+          v-model="params.instituteType"
           size="small"
           clearable
           style="width: 160px"
         >
           <el-option
-            v-for="item in settlementOrderStateList3"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in institueList"
+            :key="item.key"
+            :label="item.value"
+            :value="item.key"
           />
         </el-select>
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">品牌</section>
         <el-input
           v-model="params.a2"
@@ -39,7 +39,7 @@
         />
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">区域</section>
         <el-input
           v-model="params.a6"
@@ -50,10 +50,10 @@
         />
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">店铺名称/旺旺ID</section>
         <el-input
-          v-model="params.a5"
+          v-model="params.companyName"
           size="small"
           placeholder="请输入"
           style="width: 160px"
@@ -61,7 +61,7 @@
         />
       </el-form-item>
 
-      <el-form-item prop="settlementOrderState">
+      <el-form-item>
         <section class="label-title">收编时间</section>
         <el-date-picker
           v-model="params.a1"
@@ -99,19 +99,19 @@
       height="500"
       size="mini"
     >
-      <el-table-column label="平台" prop="a2" />
-      <el-table-column label="品牌" prop="a1" />
-      <el-table-column label="店铺名称/旺旺ID" prop="a3" />
+      <el-table-column label="平台" prop="instituteType" />
+      <el-table-column label="品牌" prop="brand" />
+      <el-table-column label="店铺名称/旺旺ID" prop="shopId" />
 
-      <el-table-column label="店铺等级" prop="a4" />
-      <el-table-column label="公司名" prop="a5" width="200" />
-      <el-table-column label="区域" prop="a6" />
-      <el-table-column label="负责人" prop="a7" />
-      <el-table-column label="联系方式" prop="a8" width="160" />
+      <el-table-column label="店铺等级" prop="shopLevel" />
+      <el-table-column label="公司名" prop="companyName" width="200" />
+      <el-table-column label="区域" prop="area" />
+      <el-table-column label="负责人" prop="createUserName" />
+      <el-table-column label="联系方式" prop="contactInformation" width="160" />
 
-      <el-table-column label="收编时间" prop="a9" />
+      <el-table-column label="收编时间" prop="incorporateTime" />
 
-      <el-table-column label="备注" prop="a10" />
+      <el-table-column label="备注" prop="remark" />
     </el-table>
 
     <div class="fixFooter">
@@ -127,8 +127,8 @@
 
       <Pagination
         :total="total"
-        :page.sync="curPage"
-        :size.sync="pageSize"
+        :page.sync="params.curPage"
+        :size.sync="params.pageSize"
         @pagination="loadData"
       />
     </div>
@@ -136,9 +136,9 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { uploadFile, post } from "@/utils/request";
-import Api from "@/constant/api";
+import { mapGetters } from "vuex"
+import { uploadFile, post } from "@/utils/request"
+import Api from "@/constant/api"
 
 export default {
   filters: {
@@ -146,14 +146,16 @@ export default {
       const stateMap = {
         "-1": "已作废",
         0: "正常",
-        1: "已归档",
-      };
-      return stateMap[item];
-    },
+        1: "已归档"
+      }
+      return stateMap[item]
+    }
   },
   data() {
     return {
       filterAll: false,
+
+      institueList: [],
 
       settlementOrderStateList1: [
         { label: "已下架", value: 0 },
@@ -161,25 +163,29 @@ export default {
         { label: "已删除", value: 1 },
         { label: "已收编", value: 2 },
         { label: "已撤诉", value: 3 },
-        { label: "意愿合作", value: 4 },
+        { label: "意愿合作", value: 4 }
       ],
       settlementOrderStateList3: [
         { label: "淘宝", value: 0 },
         { label: "拼多多", value: -1 },
         { label: "京东", value: 1 },
-        { label: "苏宁", value: 2 },
+        { label: "苏宁", value: 2 }
       ],
 
       params: {
-        type: 1,
+        curPage: 1,
+        pageSize: 50,
+        instituteType: "",
+        shopName: "",
+        pointSku: "",
+        minViolationNum: "",
+        minDistinctViolationNum: "",
+        maxViolationNum: "",
+        maxDistinctViolationNum: "",
+        instituteType: ""
       },
-      payType: "",
-      invoiceState: "",
 
-      pageSize: 50,
-      curPage: 1,
-      total: 6,
-      //
+      total: 19,
 
       list: [
         {
@@ -191,7 +197,7 @@ export default {
           a6: "苏州",
           a7: "五爷",
           a8: "13376796563",
-          a9: "09/04/2020",
+          a9: "09/04/2020"
         },
         {
           a1: "雀巢",
@@ -202,7 +208,7 @@ export default {
           a6: "南昌",
           a7: "刘斌",
           a8: "15858586336",
-          a9: "09/03/2019",
+          a9: "09/03/2019"
         },
         {
           a1: "雀巢",
@@ -213,7 +219,7 @@ export default {
           a6: "济南",
           a7: "张帆远",
           a8: "17796337312",
-          a9: "09/03/2019",
+          a9: "09/03/2019"
         },
         {
           a1: "雀巢",
@@ -224,7 +230,7 @@ export default {
           a6: "上海",
           a7: "王总",
           a8: "微信 wangxinhe098",
-          a9: "10/02/2020",
+          a9: "10/02/2020"
         },
         {
           a1: "雀巢",
@@ -235,7 +241,7 @@ export default {
           a6: "上海",
           a7: "陈总",
           a8: "18839336781",
-          a9: "11/02/2020",
+          a9: "11/02/2020"
         },
         {
           a1: "雀巢",
@@ -246,19 +252,51 @@ export default {
           a6: "南昌",
           a7: "刘斌",
           a8: "15858586336",
-          a9: "09/03/2019",
-        },
-      ],
-    };
+          a9: "09/03/2019"
+        }
+      ]
+    }
   },
   mounted() {
-    // this.loadData()
+    this.loadBase()
+    this.loadData()
   },
   computed: {
-    ...mapGetters(["data"]),
+    ...mapGetters(["data"])
   },
   methods: {
-    loadData(query) {},
+    loadBase() {
+      this.request({
+        url: "/common/getInstitute"
+      }).then((res) => {
+        const { msg, code, data } = res
+        if (code == 200) {
+          this.institueList = data
+        }
+      })
+      this.request({
+        url: "/common/getFeedback"
+      }).then((res) => {
+        const { msg, code, data } = res
+        if (code == 200) {
+          this.feedbackList = data
+        }
+      })
+    },
+    loadData() {
+      this.request({
+        url: "/distribution/incorporateShop",
+        data: this.filterParams(this.params)
+      }).then((res) => {
+        const { msg, code, data } = res
+        const { curPage, total, list } = data
+        if (code == 200) {
+          this.list = list
+          this.params.curPage = curPage
+          this.total = total
+        }
+      })
+    },
     handleExport() {
       // const { pageSize, curPage, params } = this
       // const data = {
@@ -271,36 +309,13 @@ export default {
       // })
     },
 
-    // opt
-    // del(item){
-    //   this.$confirm('此操作将永久删除数据, 是否继续?', '提示', {
-    //     confirmButtonText: '确定',
-    //     cancelButtonText: '取消',
-    //     type: 'warning'
-    //   }).then(() => {
-    //     const data = {
-    //     data: {
-    //         settlementOrderIdList: [item.settlementOrderId]
-    //       }
-    //     }
-    //     post({url: Api.orderDel, data}).then(r => {
-    //       this.handleRes(r, () => {
-    //         this.loadData()
-    //       })
-    //     })
-    //   }).catch(() => {
-
-    //   })
-
-    // },
-
     resetForm() {
-      this.invoiceState = "";
-      this.payType = "";
-      this.params = {};
-    },
-  },
-};
+      this.invoiceState = ""
+      this.payType = ""
+      this.params = {}
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

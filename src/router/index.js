@@ -76,7 +76,7 @@ export const constantRoutes = [
     meta: { title: '渠道数据分析', icon: 's6' },
     children: [
       {
-        path: 'list',
+        path: 'listProduct',
         name: '结算单管理',
         component: () => import('@/views/channel/listProduct'),
         meta: { title: '产品违规情况分析' }
