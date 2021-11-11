@@ -94,16 +94,16 @@
       height="500"
       size="mini"
     >
-      <el-table-column label="品牌" prop="a1" width="120" />
-      <el-table-column label="平台" prop="a2" width="120" />
-      <el-table-column label="店铺名称/旺旺ID" prop="a3" width="200" />
-      <el-table-column label="链接" prop="a4">
+      <el-table-column label="品牌" prop="brand" width="120" />
+      <el-table-column label="平台" prop="instituteType" width="120" />
+      <el-table-column label="店铺名称/旺旺ID" prop="shopName" width="200" />
+      <el-table-column label="链接">
         <template slot-scope="scope">
-          <a :href="scope.row.a4" target="_blank">{{ scope.row.a4 }}</a>
+          <a :href="scope.row.a4" target="_blank">{{ scope.row.shopUrl }}</a>
         </template>
       </el-table-column>
 
-      <el-table-column label="处理结果" prop="a5" width="120" />
+      <el-table-column label="处理结果" prop="feedback" width="120" />
     </el-table>
 
     <div class="fixFooter">

@@ -172,16 +172,6 @@ export default {
   data() {
     return {
       filterAll: false,
-      settlementOrderStateList1: [
-        { label: "A0", value: 0 },
-        { label: "A1", value: -1 },
-        { label: "A2", value: 1 }
-      ],
-      settlementOrderStateList2: [
-        { label: "Apple", value: 0 },
-        { label: "Android", value: -1 },
-        { label: "Mi", value: 1 }
-      ],
       institueList: [],
 
       params: {
